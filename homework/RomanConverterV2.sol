@@ -9,7 +9,8 @@ contract RomanConverterV2 {
 
     function intToRoman(uint256 num) public view returns (string memory) {
         require(num > 0 && num <= 3999, "Number out of range");
-
+        // abi.encodePacked(a, b, c)
+        // 这是 Solidity 中常见的字符串拼接方式，返回的是 bytes，通过 string(...) 转换为字符串。
         return string(abi.encodePacked(
             thousands[num / 1000],
             hundreds[(num % 1000) / 100],
