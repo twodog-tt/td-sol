@@ -8,7 +8,7 @@ pragma solidity >=0.8.2 <0.9.0;
 // 一个getVotes函数，返回某个候选人的得票数,
 // 一个resetVotes函数，重置所有候选人的得票数.
 
-contract voliting{
+contract voliting {
     // 候选人票数映射
     mapping(string => uint256) private votes;
     // 候选人列表
@@ -23,7 +23,7 @@ contract voliting{
     constructor(string[] memory _candidates) {
         owner = msg.sender; // msg 是 Solidity 内建的环境对象，由 EVM 提供；
         candidates = _candidates;
-        for (uint i = 0; i < _candidates.length; i++) {
+        for (uint256 i = 0; i < _candidates.length; i++) {
             votes[_candidates[i]] = 0; // 初始化每位候选人的票数为 0。
         }
     }
@@ -44,7 +44,7 @@ contract voliting{
     // 重置所有候选人的得票数（仅管理员）
     function resetVotes() public {
         require(msg.sender == owner, "Only owner can reset votes"); // require(msg.sender == owner, ...): 只有部署者（管理员）可以执行此函数。
-        for (uint i = 0; i < candidates.length; i++) {
+        for (uint256 i = 0; i < candidates.length; i++) {
             votes[candidates[i]] = 0;
         }
     }
@@ -52,7 +52,7 @@ contract voliting{
     // 判断候选人是否合法
     // internal view: 只能在合约内部调用，且不修改状态。
     function validCandidate(string memory name) internal view returns (bool) {
-        for (uint i = 0; i < candidates.length; i++) {
+        for (uint256 i = 0; i < candidates.length; i++) {
             if (keccak256(bytes(candidates[i])) == keccak256(bytes(name))) {
                 return true;
             }

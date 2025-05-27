@@ -19,12 +19,14 @@ contract RomanConverter {
         uint256 n = str.length; // 获取长度
         uint256 ans = 0; // 初始化返回值
 
-        for (uint256 i = 0; i < n; i++) { // 遍历字符数组bytes
+        for (uint256 i = 0; i < n; i++) {
+            // 遍历字符数组bytes
             uint256 value = symbolValues[str[i]];
             // 如果当前字符比后一个字符小，说明是减法结构（如 IV = 5 - 1 = 4），减去当前值。
             if (i < n - 1 && value < symbolValues[str[i + 1]]) {
                 ans -= value;
-            } else {// 否则是加法结构，加上当前值。
+            } else {
+                // 否则是加法结构，加上当前值。
                 ans += value;
             }
         }
